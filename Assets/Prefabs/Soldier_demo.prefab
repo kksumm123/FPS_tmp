@@ -197,6 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2766905101616052428}
   - component: {fileID: 2766905101625628432}
+  - component: {fileID: 1403952771}
   m_Layer: 0
   m_Name: Soldier_demo
   m_TagString: Untagged
@@ -230,7 +231,7 @@ Animator:
   m_GameObject: {fileID: 2766905101616276652}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fcb334eb247ae3e488abb081c847cf09, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 693447635b1072d468e1d67856e5c8e0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -239,6 +240,25 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1403952771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766905101616276652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa5428b65749de24ca05f7dc70ce6589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distance: 2.54
+  drawSphere: 0
+  drawWireSphere: 1
+  drawWireCube: 1
+  drawRay: 1
+  drawIcon: 1
+  drawFrustum: 1
 --- !u!1 &2766905101616276654
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,7 +29,7 @@ public class GizmoTest : MonoBehaviour
         if (drawRay)
             Gizmos.DrawRay(transform.position, transform.forward);
         if (drawIcon)
-            Gizmos.DrawIcon(transform.position, "testIcon.png", true);
+            Gizmos.DrawIcon(transform.position, "testIcon.png");
         if (drawFrustum)
             Gizmos.DrawFrustum(transform.position, 60, distance, 1, 1.5f);
 
