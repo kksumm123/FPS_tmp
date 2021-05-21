@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,6 +25,29 @@ public class TargetEnemy : MonoBehaviour
         yield return StartCoroutine(PetrolCo());
     }
 
+
+    public float viewingDistance = 3f;
+    public float viewingAngle = 90f;
+    private void OnDrawGizmos()
+    {
+        //Gizmos.DrawWireSphere(transform.position, viewingDistance);
+        // 시야각 표시
+        // 호 표시.
+        //Transform tr = GetComponent<Transform>();
+        Transform tr = transform;
+        float halfAngle = viewingAngle * 0.5f;
+        Handles.color = Color.red;
+        Handles.DrawWireArc(tr.position, tr.up
+            , tr.forward.AngleToYDirection(-halfAngle), viewingAngle, viewingDistance);
+
+        // 좌, 우 선 표시
+        Handles.DrawLine(tr.position
+            , tr.position + tr.forward.AngleToYDirection(-halfAngle) * viewingDistance);// 왼쪽선 그리기.
+
+        Handles.DrawLine(tr.position
+            , tr.position + tr.forward.AngleToYDirection(halfAngle) * viewingDistance); // 오른쪽선 그리기.
+
+    }
     IEnumerator PetrolCo()
     {
         ///상태 1) 페트롤: 
@@ -35,18 +59,19 @@ public class TargetEnemy : MonoBehaviour
         ///
         // 첫번째 웨이 포인트로 가자
         animator.Play("run");
-        int i = 0;
         while (true)
         {
+            if (wayPointIdx >= wayPoints.Count)
+                wayPointIdx = 0;
+
             Debug.Log("wayPointIdx : " + wayPointIdx);
             agent.destination = wayPoints[wayPointIdx].position;
             yield return null; // 1프레임 쉬자
 
-            if (wayPointIdx >= wayPoints.Count)
-                wayPointIdx = 0;
             while (true)
             {
                 //도착 했는지 (Approximately쓰면 안되나?)
+                // 별로 좋지 않다.
                 // remainingDistance가 시작되자마자 0이다 
                 // 왜? 1프레임이 지나야 갱신된다
                 if (agent.remainingDistance == 0)
@@ -56,6 +81,28 @@ public class TargetEnemy : MonoBehaviour
                     break;
                 }
                 //플레이어 탐지
+                //플레이어와 나와의 위치를 구하자
+                float distance = Vector3.Distance(transform.position, player.position);
+                // 시야거리 이내라면
+                if (distance < viewingDistance)
+                {
+                    // 시야각에 들어왔는지 판단할 bool 변수
+                    bool insideViewingAngle = false;
+
+                    // 시야각에 들어왔는지 확인하는 로직
+                    Vector3 targetDir = player.position - transform.position;
+                    targetDir.Normalize();
+                    float angle = Vector3.Angle(targetDir, transform.forward);
+                    if (Mathf.Abs(angle) <= viewingAngle * 0.5f)
+                    {
+                        insideViewingAngle = true;
+                    }
+
+                    if (insideViewingAngle)
+                    {
+                        Debug.LogWarning("찾았다 -> 추적 상태로 전환해야함");
+                    }
+                }
 
 
                 // 유니티는 싱글스레드 이기때문에 이대로 돌리면 무한루프
@@ -65,12 +112,12 @@ public class TargetEnemy : MonoBehaviour
             wayPointIdx++;
         }
         // 패트롤 상태
-        while (true)
-        {
-            agent.destination = player.position;
-            //yield return new WaitForSeconds(1); //1초 쉬는거
-            yield return null; // 1프레임 쉬는거
-        }
+        //while (true)
+        //{
+        //    agent.destination = player.position;
+        //    //yield return new WaitForSeconds(1); //1초 쉬는거
+        //    yield return null; // 1프레임 쉬는거
+        //}
     }
 
     public GameObject attackedEffect;
