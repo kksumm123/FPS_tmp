@@ -6,12 +6,49 @@ using UnityEngine.AI;
 
 public class TargetEnemy : MonoBehaviour
 {
+    public Animator animator;
     public Transform target;
     public NavMeshAgent agent;
+    private float moveSpeed;
+    public List<Transform> wayPoints;
+    public List<Vector3> wayPointsVectors;
     // 타겟을 매 프레임 쫒아가자.
     IEnumerator Start()
     {
+        animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
         moveSpeed = agent.speed;
+
+        ///상태 1) 페트롤: 
+        ///지정된 웨이 포인트 이동
+        ///웨이 포인트를 무한 반복하게 만들자
+        ///페트롤이 끝나는 조건:
+        ///1.시야 범위 안에 적이 들어 옴->추적으로 전환.
+        ///2.소리 듣는 범위 안에서 총소리 발생하면 해당 방향으로 이동 -> 지정위치 이동으로 전환
+
+        // 첫번째 웨이 포인트로 가자
+        animator.Play("run");
+        while (true)
+        {
+            agent.destination = wayPoints[0].position;
+            while (true)
+            {
+                //도착 했는지 (Approximately쓰면 안되나?)
+                if (agent.remainingDistance == 0)
+                {
+                    Debug.Log("도착");
+                    // 2번째 웨이포인트 이동.
+                }
+                else
+                {
+                    // 기다리자
+                }
+                // 유니티는 싱글스레드 이기때문에 이대로 돌리면 무한루프
+                // 그렇기 때문에
+                yield return null; // 1프레임 쉬자
+            }
+        }
+        // 패트롤 상태
         while (true)
         {
             agent.destination = target.position;
@@ -23,14 +60,13 @@ public class TargetEnemy : MonoBehaviour
     public GameObject attackedEffect;
     public GameObject destroyEffect;
     public int hp = 3;
-    private float moveSpeed;
 
     public void OnHit()
     {
         Debug.Log("OnHit : " + name, transform);
         hp--;
 
-        if (hp>0)
+        if (hp > 0)
         {
             // 맞을 때 이펙트
             Instantiate(attackedEffect, transform.position, transform.rotation);

@@ -44,7 +44,7 @@ public class ScreenGuiTest : MonoBehaviour
 
         item.viewingDistance = (float)Handles.ScaleValueHandle
             (item.viewingDistance, tr.position + tr.forward * item.viewingDistance
-            , tr.rotation, 1, Handles.ConeHandleCap, 1);
+            , tr.rotation, 3, Handles.ConeHandleCap, 1);
 
         // 아크의 왼쪽 오른쪽 직선 그리기
         // 원하는 각도만큼 방향을 돌리려면 rotation(각도) * vector3(object.tr.directoin)
