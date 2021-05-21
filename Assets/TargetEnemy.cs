@@ -6,12 +6,14 @@ using UnityEngine.AI;
 
 public class TargetEnemy : MonoBehaviour
 {
-    public Animator animator;
-    public Transform target;
+    public Transform player;
     public NavMeshAgent agent;
     private float moveSpeed;
     public List<Transform> wayPoints;
     public List<Vector3> wayPointsVectors;
+
+    public Animator animator;
+    public int wayPointIdx = 0;
     // 타겟을 매 프레임 쫒아가자.
     IEnumerator Start()
     {
@@ -19,39 +21,53 @@ public class TargetEnemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         moveSpeed = agent.speed;
 
+        yield return StartCoroutine(PetrolCo());
+    }
+
+    IEnumerator PetrolCo()
+    {
         ///상태 1) 페트롤: 
         ///지정된 웨이 포인트 이동
         ///웨이 포인트를 무한 반복하게 만들자
         ///페트롤이 끝나는 조건:
         ///1.시야 범위 안에 적이 들어 옴->추적으로 전환.
         ///2.소리 듣는 범위 안에서 총소리 발생하면 해당 방향으로 이동 -> 지정위치 이동으로 전환
-
+        ///
         // 첫번째 웨이 포인트로 가자
         animator.Play("run");
+        int i = 0;
         while (true)
         {
-            agent.destination = wayPoints[0].position;
+            Debug.Log("wayPointIdx : " + wayPointIdx);
+            agent.destination = wayPoints[wayPointIdx].position;
+            yield return null; // 1프레임 쉬자
+
+            if (wayPointIdx >= wayPoints.Count)
+                wayPointIdx = 0;
             while (true)
             {
                 //도착 했는지 (Approximately쓰면 안되나?)
+                // remainingDistance가 시작되자마자 0이다 
+                // 왜? 1프레임이 지나야 갱신된다
                 if (agent.remainingDistance == 0)
                 {
                     Debug.Log("도착");
-                    // 2번째 웨이포인트 이동.
+                    // 다음 웨이포인트 이동.
+                    break;
                 }
-                else
-                {
-                    // 기다리자
-                }
+                //플레이어 탐지
+
+
                 // 유니티는 싱글스레드 이기때문에 이대로 돌리면 무한루프
                 // 그렇기 때문에
                 yield return null; // 1프레임 쉬자
             }
+            wayPointIdx++;
         }
         // 패트롤 상태
         while (true)
         {
-            agent.destination = target.position;
+            agent.destination = player.position;
             //yield return new WaitForSeconds(1); //1초 쉬는거
             yield return null; // 1프레임 쉬는거
         }
