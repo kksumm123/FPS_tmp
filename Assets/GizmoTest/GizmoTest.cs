@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class GizmoTest : MonoBehaviour
 {
-    private float distance = 1;
+    public float distance = 1;
     public bool drawSphere = true;
     public bool drawWireSphere = true;
     public bool drawWireCube = true;
     public bool drawRay = true;
+    public bool drawIcon = true;
+    public bool drawFrustum = true;
 
     private void OnDrawGizmosSelected()
     {
@@ -25,6 +27,11 @@ public class GizmoTest : MonoBehaviour
             //Vector3.one = new Vector3(1, 1, 1)
             Gizmos.DrawWireCube(transform.position, Vector3.one * distance);
         if (drawRay)
-            Gizmos.DrawRay(transform.position, Vector3.one * distance);
+            Gizmos.DrawRay(transform.position, transform.forward);
+        if (drawIcon)
+            Gizmos.DrawIcon(transform.position, "testIcon.png", true);
+        if (drawFrustum)
+            Gizmos.DrawFrustum(transform.position, 60, distance, 1, 1.5f);
+
     }
 }

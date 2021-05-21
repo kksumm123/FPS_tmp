@@ -377,6 +377,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa5428b65749de24ca05f7dc70ce6589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 2.54
+  drawSphere: 0
+  drawWireSphere: 1
+  drawWireCube: 1
+  drawRay: 1
+  drawIcon: 1
+  drawFrustum: 1
 --- !u!1 &1525627102
 GameObject:
   m_ObjectHideFlags: 0
