@@ -354,11 +354,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soldier_demo
       objectReference: {fileID: 0}
-    - target: {fileID: 2766905101625628432, guid: 9ce865e5a735b7842971cd85e5719118, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 693447635b1072d468e1d67856e5c8e0, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1403952771, guid: 9ce865e5a735b7842971cd85e5719118, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9ce865e5a735b7842971cd85e5719118, type: 3}
 --- !u!1 &1403952770 stripped
 GameObject:
@@ -374,16 +371,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1403952770}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa5428b65749de24ca05f7dc70ce6589, type: 3}
+  m_Script: {fileID: 11500000, guid: 7aa8430a36c7e1a4ab605bb78a521157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 2.54
-  drawSphere: 0
-  drawWireSphere: 1
-  drawWireCube: 1
-  drawRay: 1
-  drawIcon: 1
-  drawFrustum: 1
+  viewingDistance: 3
+  viewingAngle: 90
 --- !u!1 &1525627102
 GameObject:
   m_ObjectHideFlags: 0

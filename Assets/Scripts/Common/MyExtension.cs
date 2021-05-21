@@ -11,6 +11,8 @@ static public class MyExtension
 {
     static public Vector3 AngleToYDirection(this Vector3 baseDirection, float angle)
     {
+        // Euler = 평상시 쓰는 0 ~ 360도 각도
+        // quaternion = 유니티에서 쓰는 각도 = rotation
         var quaternion = Quaternion.Euler(0, angle, 0);
         Vector3 newDirection = quaternion * baseDirection;
 
