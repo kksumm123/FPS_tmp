@@ -28,6 +28,17 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetMouseButtonDown(1))
+        {
+            //줌인
+            Camera.main.fieldOfView = 10;
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            //줌인
+            Camera.main.fieldOfView = 60;
+        }
+
         UseWeapon();
         Move();
         CamaraRotate();
@@ -42,12 +53,12 @@ public class Player : MonoBehaviour
         //마우스클릭 총알발사
         if (Input.GetMouseButtonDown(0))
         {
-            Instantiate(bullet, bulletSpawnPosition.position, transform.rotation);
+            Instantiate(bullet, bulletSpawnPosition.position, cameraTr.rotation);
         }
         // g키 누르면 수류탄 발사
         if (Input.GetKeyDown(KeyCode.G))
         {
-            Instantiate(grenade, bulletSpawnPosition.position, transform.rotation);
+            Instantiate(grenade, bulletSpawnPosition.position, cameraTr.rotation);
         }
     }
 

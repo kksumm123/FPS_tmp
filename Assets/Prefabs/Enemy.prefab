@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 2766905101625628432}
   - component: {fileID: 1403952771}
   - component: {fileID: 1403952772}
+  - component: {fileID: 206773302}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -268,8 +269,8 @@ MonoBehaviour:
   wayPointIndex: 0
   viewingDistance: 3
   viewingAngle: 90
-  attackedEffect: {fileID: 0}
-  destroyEffect: {fileID: 0}
+  attackedEffect: {fileID: 1427962332153456, guid: 301583a5af63a494298d60cd9f296909, type: 3}
+  destroyEffect: {fileID: 1427962332153456, guid: 301583a5af63a494298d60cd9f296909, type: 3}
   hp: 3
 --- !u!195 &1403952772
 NavMeshAgent:
@@ -293,6 +294,19 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &206773302
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766905101616276652}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.62017167, y: 2.1875443, z: 0.4602928}
+  m_Center: {x: 0.018378794, y: 1.0961263, z: -0.033012673}
 --- !u!1 &2766905101616276654
 GameObject:
   m_ObjectHideFlags: 0
@@ -964,6 +978,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2766905101616052468}
+  - component: {fileID: 1519202235}
   m_Layer: 0
   m_Name: Bip001 Head
   m_TagString: Untagged
@@ -986,6 +1001,19 @@ Transform:
   m_Father: {fileID: 2766905101616052462}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &1519202235
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766905101616276692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.18
+  m_Center: {x: -0.15, y: 0, z: 0}
 --- !u!1 &2766905101616276694
 GameObject:
   m_ObjectHideFlags: 0
