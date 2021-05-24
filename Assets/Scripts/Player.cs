@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         cameraTr = transform.Find("Main Camera");
+        Cursor.lockState = CursorLockMode.Locked;
     }
     private void Update()
     {
