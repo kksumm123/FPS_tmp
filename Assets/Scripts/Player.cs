@@ -28,9 +28,29 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        UseWeapon();
         Move();
         CamaraRotate();
     }
+
+
+    public GameObject bullet;
+    public GameObject grenade;
+    public Transform bulletSpawnPosition;
+    private void UseWeapon()
+    {
+        //마우스클릭 총알발사
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(bullet, bulletSpawnPosition.position, transform.rotation);
+        }
+        // g키 누르면 수류탄 발사
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            Instantiate(grenade, bulletSpawnPosition.position, transform.rotation);
+        }
+    }
+
 
     private void CamaraRotate()
     {
