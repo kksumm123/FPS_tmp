@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 1403952771}
   - component: {fileID: 1403952772}
   m_Layer: 0
-  m_Name: Soldier_demo
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,16 +253,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f510588a6f072a469f08ef8651daa40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  agent: {fileID: 0}
+  handle1: 0
+  handle2: 0
+  handle3: 0
+  direction: {x: 0, y: 0, z: 0}
+  player: {fileID: 0}
+  agent: {fileID: 1403952772}
   wayPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  wayPointsVectors: []
   animator: {fileID: 0}
-  wayPointIdx: 0
+  wayPointIndex: 0
+  viewingDistance: 3
+  viewingAngle: 90
   attackedEffect: {fileID: 0}
   destroyEffect: {fileID: 0}
   hp: 3
@@ -338,7 +343,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 69c0fd068809d2a4cafbb12fd8e38326, type: 2}
+  - {fileID: 2100000, guid: 8cb14909313eb0e4d8cfbd96c8c39262, type: 2}
   - {fileID: 2100000, guid: f1ffde0cab3b53e4b8db6c78d825b21a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

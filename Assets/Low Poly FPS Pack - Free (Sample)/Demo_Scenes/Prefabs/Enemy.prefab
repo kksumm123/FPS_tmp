@@ -127,8 +127,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f510588a6f072a469f08ef8651daa40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  player: {fileID: 0}
   agent: {fileID: 2119883513017068463}
+  wayPoints: []
+  wayPointsVectors: []
+  animator: {fileID: 0}
+  wayPointIdx: 0
+  viewingDistance: 3
+  viewingAngle: 90
   attackedEffect: {fileID: 1427962332153456, guid: 301583a5af63a494298d60cd9f296909, type: 3}
   destroyEffect: {fileID: 1126181125208960, guid: ca26d7307564ff848b29e32bbe6279ef, type: 3}
   hp: 3
